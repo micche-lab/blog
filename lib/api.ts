@@ -147,10 +147,10 @@ export const fetchPreviousArticle = async (options: {
     query: {
       depth: 1,
       select: ['slug'],
-      order: ['-_sys.createdAt'],
       '_sys.createdAt': {
-        lt: createdAt,
+        gt: createdAt,
       },
+      order: ['_sys.createdAt'],
     },
   })
   return article
@@ -166,10 +166,10 @@ export const fetchNextArticle = async (options: {
     query: {
       depth: 1,
       select: ['slug'],
-      order: ['_sys.createdAt'],
       '_sys.createdAt': {
-        gt: createdAt,
+        lt: createdAt,
       },
+      order: ['-_sys.createdAt'],
     },
   })
   return article
