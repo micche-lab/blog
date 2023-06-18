@@ -1369,10 +1369,10 @@ nearley@^2.20.1:
     railroad-diagrams "^1.0.0"
     randexp "0.4.6"
 
-newt-client-js@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/newt-client-js/-/newt-client-js-3.1.0.tgz#17b0e69b987cc382abec8121ad19066a50e30446"
-  integrity sha512-6N+tFzKd93869AOKNvHNSUUz/925j9I/zInTxrLvJLEXzWF016yw1N1HnRgR5qtU7i8HnjgcDldABw6ZCvaSng==
+newt-client-js@^3.2.4:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/newt-client-js/-/newt-client-js-3.2.4.tgz#6699d2b311753217484888b403af11f6b5860ce3"
+  integrity sha512-BeF3ddfd5DzXV2qOFwciiNzKqP+DpaITVRcRks5tAoWwpFXwtKxG/bZJoZH/6lJkEH5kuuN2dYM1+BY/3dMVpg==
   dependencies:
     axios "^0.26.1"
     axios-retry "^3.2.4"
