@@ -21,6 +21,7 @@ export function Footer({ app }: { app: AppMeta }) {
             </div>
           </a>
         </Link>
+        {/*
         <div className={styles.Link}>
           <a
             href="https://github.com/Newt-Inc/newt-blog-starter-nextjs"
@@ -29,7 +30,9 @@ export function Footer({ app }: { app: AppMeta }) {
           >
             GitHub
           </a>
+          
         </div>
+            */}
       </div>
     </footer>
   )
