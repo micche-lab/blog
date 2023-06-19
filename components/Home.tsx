@@ -57,15 +57,15 @@ export function Home({
 
   const headingText = useMemo(() => {
     if (currentTag) {
-      return `#${currentTag.name || currentTag.slug}`
+      return `タグ：${currentTag.name || currentTag.slug}`
     }
     if (currentAuthor) {
-      return `Articles by ${(currentAuthor && currentAuthor.fullName) || ''}`
+      return `${(currentAuthor && currentAuthor.fullName) || ''}の書いた記事`
     }
     if (year) {
-      return `Articles in ${year}`
+      return `${year}年の記事`
     }
-    return 'Recent Articles'
+    return '記事一覧'
   }, [currentTag, currentAuthor, year])
 
   const paginationBasePath = useMemo(() => {
