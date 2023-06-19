@@ -140,7 +140,7 @@ export default function ArticlePage({
               {currentArticle.tags.map((tag) => (
                 <li key={tag._id}>
                   <Link href={`/tag/${tag.slug}`}>
-                    <a>#{tag.name}</a>
+                    <a>タグ:{tag.name}</a>
                   </Link>
                 </li>
               ))}
