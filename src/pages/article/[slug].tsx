@@ -1,7 +1,3 @@
-import { AppMeta, Content } from 'newt-client-js'
-import styles from '@/styles/Article.module.css'
-import Head from 'next/head'
-import { useCallback, useMemo } from 'react'
 import { Layout } from '@/components/Layout'
 import {
   fetchApp,
@@ -11,9 +7,14 @@ import {
   fetchPreviousArticle,
 } from '@/lib/api'
 import { formatDate } from '@/lib/date'
+import styles from '@/styles/Article.module.css'
 import { Article } from '@/types/article'
+import { load } from 'cheerio'
 import { htmlToText } from 'html-to-text'
+import { AppMeta, Content } from 'newt-client-js'
+import Head from 'next/head'
 import Link from 'next/link'
+import { useCallback, useMemo } from 'react'
 
 export default function ArticlePage({
   app,
@@ -100,9 +101,9 @@ export default function ArticlePage({
   const shareOnTwitter = useCallback(() => {
     window.open(
       'https://twitter.com/share?url=' +
-        encodeURIComponent(window.location.href) +
-        '&text=' +
-        document.title,
+      encodeURIComponent(window.location.href) +
+      '&text=' +
+      document.title,
       '',
       'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600'
     )
@@ -111,7 +112,7 @@ export default function ArticlePage({
   const shareOnFacebook = useCallback(() => {
     window.open(
       '//www.facebook.com/sharer.php?src=bm&u=' +
-        encodeURIComponent(location.href),
+      encodeURIComponent(location.href),
       '_blank',
       'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600'
     )
@@ -210,10 +211,14 @@ export default function ArticlePage({
               </div>
             </div>
           </div>
+
+          {/* 記事本文 */}
           <div
             className={styles.Article_Body}
             dangerouslySetInnerHTML={body}
           ></div>
+          {/* ここまで */}
+
           <div className={styles.SnsShare}>
             <p className={styles.SnsShare_Label}>共有</p>
             <ul className={styles.SnsShare_List}>
@@ -328,6 +333,41 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   const { slug } = params
   const app = await fetchApp()
   const currentArticle = await fetchCurrentArticle({ slug })
+
+  /*-----------------------
+    ここからcheerioライブラリ 
+  ------------------------*/
+
+  // loadでcheerioライブラリ呼び出し
+  const $ = load(currentArticle.body);
+  // 見出しタグ抽出
+  const headerTags = $('h2, h3, h4');
+
+  // 初めのh2タグの直前に目次生成
+  $('<div class="toc"><ul></ul></div>').insertBefore('h2:first-child');
+
+  // 見出しタグ分eachで繰り返し処理
+  headerTags.each(function(index,elm){
+
+  // 見出しタグのtext部分のみ抽出
+    const headerText = $(elm).text();
+    
+  // ulタグの中にindex分見出しタグのリスト(リンク付き)を作る
+    $('.toc > ul').append(`<li><a href=#${index}>${headerText}</a></li>`);
+
+  // 見出しにid付与
+    $(elm)
+      .contents()
+      .wrap(`<span id="${index}"></span>`);
+  })
+  
+  currentArticle.body = $.html(); //今までの処理を反映
+
+  /*--------------------- 
+    cheerioライブラリおわり
+  ----------------------*/
+
+
   const prevArticle = currentArticle
     ? await fetchPreviousArticle({ createdAt: currentArticle._sys.createdAt })
     : null
