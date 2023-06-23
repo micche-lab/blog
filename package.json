@@ -16,8 +16,7 @@
     "newt-client-js": "^3.2.4",
     "next": "12.3.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "tocbot": "^4.21.0"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@types/html-to-text": "^8.0.1",
