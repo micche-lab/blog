@@ -2,7 +2,7 @@ import { useEffect } from 'react' //レンダリング後に行う関数
 import tocbot from 'tocbot' //tocbotという名前で使えるようにする
 import styles from '@/styles/Toc.module.css'
 
-export default function TocBot(){
+export default function TocBot() {
   useEffect(() => {
     tocbot.init({
       tocSelector: '.toc', //目次表示させる要素のクラス名
@@ -14,11 +14,11 @@ export default function TocBot(){
   }, [])
 
   return (
-    <div className="{styles.toc_Header}">
-    <span>目次</span>
-    <div className="{styles.toc}">
-      
-    </div>
+    <div className={styles.toc_Header}>
+      <span>目次</span>
+      <div className={styles.toc}>
+
+      </div>
     </div>
   )
 }
