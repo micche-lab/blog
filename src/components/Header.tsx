@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import styles from '@/styles/Header.module.css'
+import HeaderEffect from './HeaderEffect'
 
 export function Header({ app }: { app: AppMeta }): JSX.Element {
   const router = useRouter()
@@ -23,8 +24,11 @@ export function Header({ app }: { app: AppMeta }): JSX.Element {
     }
   }, [q])
 
+
   return (
+    
     <header className={styles.Header}>
+            <HeaderEffect />
       <div className={styles.Header_Inner}>
         <Link href="/">
           <a href="#" className={styles.Title}>
@@ -78,6 +82,7 @@ export function Header({ app }: { app: AppMeta }): JSX.Element {
           </form>
         </div>
       </div>
+
     </header>
   )
 }
