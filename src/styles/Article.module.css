@@ -133,10 +133,12 @@
   border: none;
   cursor: pointer;
 }
+/* シェア部分のアイコン設定 */
 .Article_ShareList > li > button > svg {
   width: 20px;
   height: 20px;
   transition: fill 0.2s;
+  color: #ccc;
 }
 .Article_ShareList > li > button:hover > svg {
   fill: #888;
@@ -146,6 +148,7 @@
   margin: 0 0 28px 0;
   border-bottom: 1px solid #e5e5e5;
 }
+/* 記事タイトル設定 */
 .Article_Body h1,
 .Article_Body h2,
 .Article_Body h3,
@@ -254,6 +257,8 @@
     padding: 0 0 0 10px;
   }
 }
+
+/* 記事下シェア */
 .SnsShare {
   display: flex;
   align-items: center;
@@ -284,14 +289,17 @@
   border: none;
   cursor: pointer;
 }
+/* SNSシェアicon設定 */
 .SnsShare_List > li > button > svg {
   width: 28px;
   height: 28px;
   transition: fill 0.2s;
+  color:#ccc;
 }
 .SnsShare_List > li > button:hover > svg {
   fill: #888;
 }
+/* 著者設定 */
 .Author {
   border: 1px solid #e5e5e5;
   border-radius: 4px;
