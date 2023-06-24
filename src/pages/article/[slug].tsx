@@ -15,6 +15,8 @@ import { AppMeta, Content } from 'newt-client-js'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useCallback, useMemo } from 'react'
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi'
+import { AiFillFacebook, AiOutlineTwitter } from 'react-icons/ai'
 
 export default function ArticlePage({
   app,
@@ -131,12 +133,17 @@ export default function ArticlePage({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.Container}>
+        {/* 記事部分 */}
         <article v-if="currentArticle" className={styles.Article}>
+          {/* 記事のカバー写真 */}
           <div className={styles.Article_Cover}>
             <img src={currentArticle.coverImage.src} alt="" />
           </div>
+          {/* 記事ヘッダー部分 */}
           <div className={styles.Article_Header}>
+            {/* タイトルエリア */}
             <h1 className={styles.Article_Title}>{currentArticle.title}</h1>
+            {/* タグエリア */}
             <ul className={styles.Article_Tags}>
               {currentArticle.tags.map((tag) => (
                 <li key={tag._id}>
@@ -146,8 +153,14 @@ export default function ArticlePage({
                 </li>
               ))}
             </ul>
+
             <div className={styles.Article_Row}>
-              <div className={styles.Article_Author}>
+              {/* 投稿日 */}
+              <time dateTime={publishDate} className={styles.Article_Date}>
+                投稿日 : {publishDate}
+              </time>
+              {/* <div className={styles.Article_Author}>
+              
                 <a href="#" className={styles.Article_Avatar}>
                   {currentArticle.author?.profileImage?.src ? (
                     <img
@@ -177,34 +190,20 @@ export default function ArticlePage({
                     {publishDate}
                   </time>
                 </div>
-              </div>
+              </div> */}
+
+              {/* 記事上シェア部分 */}
               <div className={styles.Article_Share}>
                 <p className={styles.Article_ShareLabel}>記事の共有</p>
                 <ul className={styles.Article_ShareList}>
                   <li>
                     <button type="button" onClick={shareOnTwitter}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="24px"
-                        viewBox="0 0 24 24"
-                        width="24px"
-                        fill="#cccccc"
-                      >
-                        <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
-                      </svg>
+                      <AiOutlineTwitter />
                     </button>
                   </li>
                   <li>
                     <button type="button" onClick={shareOnFacebook}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="24px"
-                        viewBox="0 0 24 24"
-                        width="24px"
-                        fill="#cccccc"
-                      >
-                        <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m13 2h-2.5A3.5 3.5 0 0 0 12 8.5V11h-2v3h2v7h3v-7h3v-3h-3V9a1 1 0 0 1 1-1h2V5z" />
-                      </svg>
+                      <AiFillFacebook />
                     </button>
                   </li>
                 </ul>
@@ -219,37 +218,24 @@ export default function ArticlePage({
           ></div>
           {/* ここまで */}
 
+          {/* 記事下シェア部分 */}
           <div className={styles.SnsShare}>
             <p className={styles.SnsShare_Label}>共有</p>
             <ul className={styles.SnsShare_List}>
               <li>
                 <button type="button" onClick={shareOnTwitter}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    fill="#cccccc"
-                  >
-                    <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
-                  </svg>
+                  <AiOutlineTwitter />
                 </button>
               </li>
               <li>
                 <button type="button" onClick={shareOnFacebook}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    fill="#cccccc"
-                  >
-                    <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m13 2h-2.5A3.5 3.5 0 0 0 12 8.5V11h-2v3h2v7h3v-7h3v-3h-3V9a1 1 0 0 1 1-1h2V5z" />
-                  </svg>
+                  <AiFillFacebook />
                 </button>
               </li>
             </ul>
           </div>
+
+          {/* 記事の著者部分 */}
           <aside className={styles.Author}>
             <a href="#" className={styles.Author_Avatar}>
               {currentArticle.author?.profileImage?.src ? (
@@ -282,21 +268,13 @@ export default function ArticlePage({
               ></div>
             </div>
           </aside>
+
+          {/* ページネーション */}
           <nav className={styles.Links}>
             {prevArticle && (
               <Link href={`/article/${prevArticle.slug}`}>
                 <a className={styles.Links_Previous}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    fill="#333333"
-                  >
-                    <path d="M0 0h24v24H0V0z" fill="none" opacity=".87" />
-                    <path d="M17.51 3.87L15.73 2.1 5.84 12l9.9 9.9 1.77-1.77L9.38 12l8.13-8.13z" />
-                  </svg>
-                  前へ
+                  <HiOutlineChevronLeft />前へ
                 </a>
               </Link>
             )}
@@ -304,21 +282,7 @@ export default function ArticlePage({
               <Link href={`/article/${nextArticle.slug}`}>
                 <a className={styles.Links_Next}>
                   次へ
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    enableBackground="new 0 0 24 24"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    fill="#333333"
-                  >
-                    <g>
-                      <path d="M0,0h24v24H0V0z" fill="none" />
-                    </g>
-                    <g>
-                      <polygon points="6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12" />
-                    </g>
-                  </svg>
+                  <HiOutlineChevronRight />
                 </a>
               </Link>
             )}
@@ -347,20 +311,20 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   $('<div class="toc"><ul></ul></div>').insertBefore('h2:first-child');
 
   // 見出しタグ分eachで繰り返し処理
-  headerTags.each(function(index,elm){
+  headerTags.each(function (index, elm) {
 
-  // 見出しタグのtext部分のみ抽出
+    // 見出しタグのtext部分のみ抽出
     const headerText = $(elm).text();
-    
-  // ulタグの中にindex分見出しタグのリスト(リンク付き)を作る
+
+    // ulタグの中にindex分見出しタグのリスト(リンク付き)を作る
     $('.toc > ul').append(`<li><a href=#${index}>${headerText}</a></li>`);
 
-  // 見出しにid付与
+    // 見出しにid付与
     $(elm)
       .contents()
       .wrap(`<span id="${index}"></span>`);
   })
-  
+
   currentArticle.body = $.html(); //今までの処理を反映
 
   /*--------------------- 
