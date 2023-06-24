@@ -43,13 +43,9 @@ const ReturnTopButton = () => {
     const style = isButtonActive ? activeStyle : normalStyle
 
     return (
-
-        <div style={style}>
-            <button onClick={returnTop}>
-                <span className={styles.Badge}><HiArrowSmUp /></span>
-            </button>
-        </div>
-
+        <button onClick={returnTop} style={style}>
+            <span className={styles.Badge}><HiArrowSmUp /></span>
+        </button>
     );
 }
 
