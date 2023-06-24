@@ -85,7 +85,7 @@ export function Home({
     <Layout app={app}>
       <Head>
         <title>{app?.name || app?.uid || ''}</title>
-        <link rel="icon" href="@/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       {shouldDisplayCover && <Cover app={app} />}
       <div className={styles.Container}>
