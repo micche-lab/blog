@@ -1,4 +1,4 @@
-import styles from '@/styles/Badge.module.css'
+// import styles from '@/styles/Badge.module.css'
 import ReturnTopButton from './ReturnTopButton'
 
 export function Badge() {
@@ -6,8 +6,8 @@ export function Badge() {
     <ReturnTopButton />
    /*  <a href="#" className={styles.Badge}>
     <span className={styles.Badge}>▲</span>
-    </a> */
-    /*<a
+    </a> 
+    <a
       href="https://newt.so/"
       rel="noreferrer noopener"
       target="_blank"
